@@ -1,0 +1,497 @@
+<!DOCTYPE html>  <html>    <head>      <title>Nexora AI | AI Powered Ads & Automation</title>      
+<meta name="viewport" content="width=device-width, initial-scale=1.0">  <style>      
+* { box-sizing: border-box; }      
+html, body { width: 100%; max-width: 100%; overflow-x: hidden; margin: 0; padding: 0; scroll-behavior: smooth; }    body {      
+background: radial-gradient(circle at top, #12304a, #080d18 70%);      
+font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-serif;      
+color: white;      
+padding-top: 50px;      
+display: flex;      
+flex-direction: column;      
+align-items: center;
+
+}
+
+.hero, .card {
+width: 95%;
+max-width: 900px;
+padding: 35px;
+background: rgba(17, 24, 39, 0.85);
+border: 1px solid rgba(0, 242, 254, 0.15);
+border-radius: 16px;
+margin-bottom: 25px;
+box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+text-align: center;
+backdrop-filter: blur(10px);
+}
+
+.hero { background: transparent; box-shadow: none; border: 0; }
+
+.premium-text-logo {
+width: 110px;
+height: 110px;
+margin: 0 auto 20px auto;
+background: linear-gradient(135deg, #0f172a, #1e293b);
+border: 3px solid #00f2fe;
+border-radius: 24px;
+display: flex;
+align-items: center;
+justify-content: center;
+font-size: 38px;
+font-weight: 800;
+color: #ffffff;
+letter-spacing: 1px;
+box-shadow: 0 0 25px rgba(0, 242, 254, 0.35), inset 0 0 15px rgba(0, 242, 254, 0.2);
+position: relative;
+animation: floatHero 4s ease-in-out infinite;
+}
+
+.premium-text-logo::before {
+content: 'AI';
+position: absolute;
+bottom: -10px;
+right: -10px;
+background: linear-gradient(90deg, #7f00ff, #e100ff);
+color: white;
+font-size: 11px;
+padding: 3px 8px;
+border-radius: 8px;
+font-weight: 900;
+letter-spacing: 0.5px;
+box-shadow: 0 0 10px rgba(225, 0, 255, 0.5);
+}
+
+@keyframes floatHero {
+0%, 100% { transform: translateY(0px); }
+50% { transform: translateY(-8px); }
+}
+
+h1 {
+font-size: 48px;
+font-weight: 800;
+letter-spacing: -0.5px;
+background: linear-gradient(90deg, #00f2fe, #4facfe, #a18cd1);
+-webkit-background-clip: text;
+color: transparent;
+text-shadow: 0 0 30px rgba(0, 242, 254, 0.2);
+margin: 10px 0;
+}
+
+.hero button, .card a button {
+font-size: 18px;
+padding: 16px 40px;
+border-radius: 30px;
+box-shadow: 0 0 20px rgba(0, 242, 254, 0.4);
+background: linear-gradient(90deg, #00f2fe, #4facfe);
+color: #080d18;
+border: 0;
+font-weight: bold;
+cursor: pointer;
+transition: 0.3s ease;
+margin-top: 15px;
+width: 100%;
+max-width: 320px;
+}
+
+.hero button:hover, .card a button:hover {
+transform: scale(1.05);
+box-shadow: 0 0 35px #00f2fe;
+}
+
+.card a .insta-btn {
+background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+box-shadow: 0 0 20px rgba(220, 39, 67, 0.4);
+color: white;
+}
+.card a .insta-btn:hover {
+box-shadow: 0 0 30px rgba(220, 39, 67, 0.8);
+}
+
+.card h2 {
+font-size: 26px;
+margin-bottom: 15px;
+background: linear-gradient(90deg, #00f2fe, #4facfe);
+-webkit-background-clip: text;
+color: transparent;
+}
+
+.card p {
+font-size: 17px;
+line-height: 1.7;
+color: #cbd5e1;
+}
+
+.tab-buttons { display: flex; justify-content: center; gap: 8px; margin-bottom: 25px; flex-wrap: wrap; }
+.tab-btn {
+background: #1e293b; color: white; border: 1px solid #334155; padding: 10px 18px;
+border-radius: 25px; cursor: pointer; font-weight: bold; font-size: 13px; transition: 0.3s;
+}
+.tab-btn.active, .tab-btn:hover {
+background: #00f2fe; color: #080d18; border-color: #00f2fe; box-shadow: 0 0 15px rgba(0, 242, 254, 0.6);
+}
+.portfolio-content { display: none; animation: fadeIn 0.5s ease-in-out forwards; }
+.portfolio-content.active { display: block; }
+
+.ad-media-box {
+position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;
+width: 100%; max-width: 700px; margin: 20px auto 0 auto; border-radius: 12px; background: #1e293b;
+box-shadow: 0 8px 25px rgba(0,0,0,0.5);
+}
+.ad-media-box img { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; object-fit: cover; }
+
+#admin-panel { display: none; border: 2px dashed #ff4757; background: #1c1012; text-align: left; }
+#admin-panel h3 { color: #ff4757; margin-top: 0; font-size: 22px; }
+#admin-panel label { font-weight: bold; color: #ff818b; font-size: 14px; }
+#admin-panel input, #admin-panel select {
+width: 100%; padding: 12px; margin: 10px 0 20px 0; background: #2f1f21; border: 1px solid #ff4757; color: white; border-radius: 8px; font-size: 15px;
+}
+#admin-panel button { background: #ff4757; color: white; border: 0; padding: 14px; width: 100%; border-radius: 8px; font-weight: bold; font-size: 16px; cursor: pointer; transition: 0.3s; }
+
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+@media (max-width: 768px) {
+h1 { font-size: 36px; }
+.card h2 { font-size: 22px; }
+.hero, .card { padding: 25px 20px; }
+.tab-btn { font-size: 12px; padding: 8px 14px; }
+}
+
+</style>  </head>
+
+<body>  <div class="hero">      
+    <div class="premium-text-logo">NX</div>      
+    <h1>Nexora AI</h1>      
+    <p>We create AI powered solutions, smart ads and digital growth strategies for modern businesses.</p>      
+     <button onclick="document.getElementById('portfolio-section').scrollIntoView({behavior:'smooth'});">  
+Start Your AI Journey  
+</button>  </div>    <div class="card">      
+    <h2>AI Ads</h2>      
+    <p>High quality AI generated advertisements that help brands grow faster.</p>      
+</div>    <div class="card">      
+    <h2>AI Automation</h2>      
+    <p>Automate tasks and make your business smarter with AI technology.</p>  </div>  
+    <div class="card">  
+    <h2>🔥 Nexora AI Pricing</h2>  <div style="margin-top:20px; padding:20px; background:#111827; border-radius:15px;">  
+    <h3 style="color:#00f2fe;">🥉 Starter Plan</h3>  
+    <h1 style="font-size:38px;">₹499</h1>  
+    <p>  
+        ✅ 3 AI Ad Creatives<br>  
+        ✅ Basic Social Media Designs<br>  
+        ✅ Ad Idea Suggestions  
+    </p>  
+    <a href="upi://pay?pa=9084104473-4@ybl&pn=Nexora%20AI&cu=INR">  
+<button>  
+    💳 Pay ₹499 Now  
+</button>
+
+</a>  
+    </div>  <div style="margin-top:20px; padding:20px; background:#111827; border-radius:15px;">  
+    <h3 style="color:#00f2fe;">🥇 Growth Plan</h3>  
+    <h1 style="font-size:38px;">₹899</h1>  
+    <p>  
+        ✅ 10 AI Ad Creatives<br>  
+        ✅ Premium Social Media Designs<br>  
+        ✅ Ad Copy + Growth Ideas  
+    </p>  
+    <a href="upi://pay?pa=9084104473-4@ybl&pn=Nexora%20AI&cu=INR">  
+<button>  
+    💳 Pay ₹899 Now  
+</button>
+
+</a>  
+    </div>  </div>  
+    <div class="card" id="portfolio-section">      
+    <h2>Our Live Creative Portfolio</h2>      
+    <p>Category select karein aur humare premium AI ads live dekhein:</p>    <div class="tab-buttons">      
+    <button class="tab-btn active" onclick="openCategory(event, 'gym')">🏋️‍♂️ Gym</button>      
+    <button class="tab-btn" onclick="openCategory(event, 'coaching')">🎓 Coaching</button>      
+    <button class="tab-btn" onclick="openCategory(event, 'fashion')">👔 Fashion</button>      
+    <button class="tab-btn" onclick="openCategory(event, 'beauty')">💅 Beauty</button>      
+    <button class="tab-btn" onclick="openCategory(event, 'food')">🍔 Cafe & Food</button>      
+    <button class="tab-btn" onclick="openCategory(event, 'health')">🏥 Healthcare</button>      
+    <button class="tab-btn" onclick="openCategory(event, 'realty')">🏠 Real Estate</button>      
+</div>      <div id="gym" class="portfolio-content active">      
+    <p>AI designed fitness advertisements to drive high gym membership conversions. 💪</p>      
+    <div class="ad-media-box"><img id="gym-img" src="https://images.unsplash.com/photo-1517838277536-f5f99be501cd?w=800" alt="Gym Ad"></div>      
+</div>      <div id="coaching" class="portfolio-content">      
+    <p>Smart marketing ideas and creative lead-generation for modern education brands. 📚</p>      
+    <div class="ad-media-box"><img id="coaching-img" src="https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=800" alt="Coaching Ad"></div>      
+</div>      <div id="fashion" class="portfolio-content">      
+    <p>Aesthetic and high-retention clothing creatives designed for modern trends. 🛍️</p>      
+    <div class="ad-media-box"><img id="fashion-img" src="https://images.unsplash.com/photo-1483985988355-763728e1935b?w=800" alt="Fashion Ad"></div>      
+</div>      <div id="beauty" class="portfolio-content">      
+    <p>Premium aesthetics & viral ads for luxury salon, cosmetics and skincare brands. ✨💄</p>      
+    <div class="ad-media-box"><img id="beauty-img" src="https://images.unsplash.com/photo-1596462502278-27bfdc403348?w=800" alt="Beauty Ad"></div>      
+</div>      <div id="food" class="portfolio-content">      
+    <p>Delicious AI visual creatives and short food videos for restaurants & cafes. 🍕🔥</p>      
+    <div class="ad-media-box"><img id="food-img" src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=800" alt="Food Ad"></div>      
+</div>      <div id="health" class="portfolio-content">      
+    <p>Professional and trust-building digital growth campaigns for clinics and hospitals. 🩺🩹</p>      
+    <div class="ad-media-box"><img id="health-img" src="https://images.unsplash.com/photo-1584515901367-f138e05a304a?w=800" alt="Healthcare Ad"></div>      
+</div>      <div id="realty" class="portfolio-content">      
+    <p>High-converting luxury property walkthroughs & real estate lead generation ads. 🏢🔑</p>      
+    <div class="ad-media-box"><img id="realty-img" src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=800" alt="Real Estate Ad"></div>      
+</div>  </div>    <div class="card" id="admin-panel">      
+    <h3>🔒 Nexora Studio Admin Controls</h3>      
+    <label>Choose Portfolio Category:</label>      
+    <select id="ad-category">      
+        <option value="gym">Gym Ads</option>      
+        <option value="coaching">Coaching Ads</option>      
+        <option value="fashion">Fashion Ads</option>      
+        <option value="beauty">Beauty & Salon Ads</option>      
+        <option value="food">Cafe & Food Ads</option>      
+        <option value="health">Healthcare Ads</option>      
+        <option value="realty">Real Estate Ads</option>      
+    </select>      
+    <label>Select New Image/Video:</label>  <input type="file" id="ad-image" accept="image/*,video/*">  <button onclick="uploadAdImage()">🚀 Upload & Update Ad</button>  </div>    <div class="card">      
+    <h2>Our Work</h2>      
+    <p>      
+        Fitness Brands Ads<br>      
+        Education Campaigns<br>      
+        Fashion Marketing Designs<br>      
+        Premium Cafe/Restaurant Ads<br>      
+        Healthcare Lead Generation<br>      
+        Luxury Real Estate Walkthroughs<br>      
+        AI Creative Solutions      
+    </p>      
+</div>    <div class="card">      
+    <h2>Contact Nexora AI</h2>      
+    <p>Grow your business with AI.  </p>  </a>    
+</a>    
+    <div style="display: flex; flex-direction: column; align-items: center; gap: 10px;">  </a>      
+        <a href="mailto:nexoraai87342@gmail.com" style="width: 100%; max-width: 320px;">    
+    <button style="width: 100%;">Contact Us on Email ✉️</button>    
+</a>    
+        <a href="https://instagram.com/naxora_ai" target="_blank" style="width: 100%; max-width: 320px;">  <button class="insta-btn" style="width: 100%; margin-top: 5px;">Follow @naxora_ai 📸</button>    
+
+
+          <button style="width:100%; background:linear-gradient(90deg,#00ff88,#00c853); color:#081018;"
+
+</a>  
+        </a>      
+    </div>      
+</div>    <div class="card" style="background: transparent; box-shadow: none;">      
+    <h2>Nexora AI</h2>      
+    <p>AI Powered Ads | Smart Marketing | Future Solutions</p>      
+    <p style="color: #00f2fe; font-weight: bold;">Managed by @naxora_ai</p>      
+    <p style="font-size: 12px; color: #4b5563; cursor: pointer; margin-top: 20px;" onclick="triggerAdminLogin()">⚙️ Admin Dashboard Access</p>      
+    <p>© 2026 Nexora AI. All Rights Reserved.</p>      
+</div>    
+<script>    
+async function uploadAdImage(){  const file = document.getElementById("ad-image").files[0];    if(!file){
+alert("Pehle image/video select karo");
+return;
+}
+
+const fileName = Date.now() + "-" + file.name;
+
+// Upload to Supabase Storage
+const { data, error } = await supabaseClient
+.storage
+.from("Ads")
+.upload(fileName, file);
+
+if(error){
+alert("Upload error: " + error.message);
+return;
+}
+
+// Get public URL
+const { data: urlData } = supabaseClient
+.storage
+.from("Ads")
+.getPublicUrl(fileName);
+
+const url = urlData.publicUrl;
+
+// Save in database
+const category = document.getElementById("ad-category").value;
+
+const { error: dbError } = await supabaseClient
+.from("portfolio")
+.insert([
+{
+category: category,
+url: url,
+type: file.type
+}
+]);
+
+if(dbError){
+alert("Database error: " + dbError.message);
+return;
+}
+
+alert("Upload successful ✅");
+console.log(url);
+
+}
+</script>
+</script>  <script>
+function openCategory(evt, categoryName) {
+var i, portfolioContent, tabLinks;
+portfolioContent = document.getElementsByClassName("portfolio-content");
+for (i = 0; i < portfolioContent.length; i++) { portfolioContent[i].style.display = "none"; }
+tabLinks = document.getElementsByClassName("tab-btn");
+for (i = 0; i < tabLinks.length; i++) { tabLinks[i].className = tabLinks[i].className.replace(" active", ""); }
+document.getElementById(categoryName).style.display = "block";
+evt.currentTarget.className += " active";
+}
+
+function triggerAdminLogin() {
+var password = prompt("Enter Secret Nexora Admin Password:");
+
+if (password === "nexora123") {      
+    alert("Access Granted!✅");  
+    document.getElementById("admin-panel").style.display = "block";  
+    document.getElementById("admin-panel").scrollIntoView({behavior:"smooth"});  
+} else {  
+    alert("Incorrect Password!");  
+}
+
+}
+
+function updateLiveAd() {
+var category = document.getElementById("ad-category").value;
+var url = document.getElementById("ad-url").value;
+
+if(url.trim() === "") {      
+    alert("Please insert or paste a valid image URL first!");      
+    return;      
+}      
+
+if(category === "gym") { document.getElementById("gym-img").src = url; }      
+else if(category === "coaching") { document.getElementById("coaching-img").src = url; }      
+else if(category === "fashion") { document.getElementById("fashion-img").src = url; }      
+else if(category === "beauty") { document.getElementById("beauty-img").src = url; }      
+else if(category === "food") { document.getElementById("food-img").src = url; }      
+else if(category === "health") { document.getElementById("health-img").src = url; }      
+else if(category === "realty") { document.getElementById("realty-img").src = url; }      
+
+alert("Perfect! Ad has been instantly changed in the " + category + " panel.");      
+document.getElementById("ad-url").value = "";
+
+}
+
+</script>    <script>
+
+</script>  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>   <script>
+const SUPABASE_URL = "https://laxsdhqzpdwgvxejgnll.supabase.co";
+const SUPABASE_KEY = "sb_publishable_PCARreU7eint10qfFbsgXQ_L9G_MeOc";
+
+const supabaseClient = supabase.createClient(
+SUPABASE_URL,
+SUPABASE_KEY
+);
+
+console.log("Supabase Connected ✅");
+</script>  <script>
+async function loadAds(){
+
+const { data, error } = await supabaseClient
+.from("portfolio")
+.select("*");
+
+if(error){
+console.log(error);
+return;
+}
+
+data.forEach(ad => {
+
+if(ad.category === "gym"){    
+  document.getElementById("gym-img").src = ad.url;    
+}    
+
+if(ad.category === "fashion"){    
+  document.getElementById("fashion-img").src = ad.url;    
+}
+
+});
+
+}
+
+loadAds();
+</script>
+<div class="card" id="ai-chat" style="padding-bottom:10px; margin-bottom:10px;">
+<h2 style="margin:0 0 8px 0;">🤖 Nexora AI Assistant</h2>
+
+<div id="chat-box" style="
+height:80px;
+overflow-y:auto;
+background:#111827;
+padding:10px;
+border-radius:12px;
+text-align:left;
+margin-bottom:8px;
+</div>
+
+<input id="user-input" placeholder="Apna sawal likho..." 
+style="
+width:100%;
+padding:15px;
+border-radius:10px;
+border:none;
+font-size:16px;
+">
+
+<button onclick="askAI()" style="
+width:100%;
+margin-top:8px;
+padding:15px;
+border-radius:30px;
+border:none;
+font-size:18px;
+font-weight:bold;
+cursor:pointer;
+background:linear-gradient(90deg,#00f2fe,#4facfe);
+color:#081018;
+box-shadow:0 0 20px rgba(0,242,254,0.5);
+transition:0.3s;
+">
+🚀 Send Message
+</button>
+</div>
+<script>
+async function askAI(){
+
+let input = document.getElementById("user-input");
+let chat = document.getElementById("chat-box");
+
+let question = input.value.trim();
+
+if(question === "") return;
+
+chat.innerHTML += `<p><b>You:</b> ${question}</p>`;
+input.value = "";
+
+chat.innerHTML += `<p id="loading">🤖 Nexora AI soch raha hai...</p>`;
+
+try {
+
+const response = await fetch("/api/chat", {
+method: "POST",
+headers:{
+"Content-Type":"application/json"
+},
+body: JSON.stringify({
+message: question
+})
+});
+
+const data = await response.json();
+
+document.getElementById("loading").innerHTML =
+"<b>Nexora AI:</b> " + data.reply;
+
+} catch(error){
+
+document.getElementById("loading").innerHTML =
+"❌ AI connect nahi ho paya.";
+
+}
+
+}
+</script>
+</body>
+          </html>
