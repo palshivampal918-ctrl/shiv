@@ -7,16 +7,23 @@ export default async function handler(req, res) {
     const { message } = req.body;
 
     const response = await fetch(
-      "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=" + process.env.GROQ_API_KEY, 
+      "https://api.groq.com/openai/v1/chat/completions",
       {
         method: "POST",
         headers: {
-          "Content-Type": "application/json"
+          "Content-Type": "application/json",
+          "Authorization": "Bearer " + process.env.GROQ_API_KEY
         },
         body: JSON.stringify({
-          contents: [
+          model: "llama-3.1-8b-instant",
+          messages: [
             {
-              parts: [{ text: message }]
+              role: "system",
+              content: "You are Nexora AI assistant."
+            },
+            {
+              role: "user",
+              content: message
             }
           ]
         })
@@ -32,7 +39,7 @@ export default async function handler(req, res) {
     }
 
     return res.status(200).json({
-      reply: data.candidates?.[0]?.content?.parts?.[0]?.text || "No response from Gemini."
+      reply: data.choices[0].message.content
     });
 
   } catch (err) {
