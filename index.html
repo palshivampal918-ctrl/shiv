@@ -420,7 +420,7 @@ loadAds();
 <h2 style="margin:0 0 5px 0;">🤖 Nexora AI Assistant</h2>
 
 <div id="chat-box" style="
-min-height:0px;
+min-height:120px;
 max-height:300px;
 overflow-y:auto;
 background:#111827;
@@ -487,7 +487,9 @@ message: question
 const data = await response.json();
 
 document.getElementById("loading").innerHTML =
-"<b>Nexora AI:</b> " + data.reply;
+"<b style='font-size:18px;'>🤖 Nexora AI:</b><br>" +
+data.reply
+.replace(/\n/g, "<br>");
 chat.scrollTop = chat.scrollHeight;
 } catch(error){
 
