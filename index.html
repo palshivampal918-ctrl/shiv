@@ -416,21 +416,26 @@ if(ad.category === "fashion"){
 
 loadAds();
 </script>
-<div class="card" id="ai-chat" style="padding:10px; margin-top:0;">
-<h2 style="margin:0 0 5px 0; padding:0 !important;">
+<div class="card" id="ai-chat" style="padding:15px; margin-top:10px;">
+
+<h2 style="margin:0 0 8px 0; padding:0;">
 🤖 Nexora AI Assistant
 </h2>
 
 <div id="chat-box" style="
-min-height:20px;
+height:auto;
+min-height:50px;
 max-height:300px;
 overflow-y:auto;
 background:#111827;
-padding:8px;
+padding:10px;
 border-radius:12px;
 text-align:left;
 margin-bottom:8px;
-scroll-behavior:smooth;">
+scroll-behavior:smooth;
+font-size:17px;
+line-height:1.6;
+">
 </div>
 
 <input id="user-input" placeholder="Ask Nexora AI anything..."
@@ -454,11 +459,12 @@ cursor:pointer;
 background:linear-gradient(90deg,#00f2fe,#4facfe);
 color:#081018;
 box-shadow:0 0 20px rgba(0,242,254,0.5);
-transition:0.3s;
 ">
 🚀 Send Message
 </button>
+
 </div>
+
 <script>
 async function askAI(){
 
@@ -490,9 +496,10 @@ const data = await response.json();
 
 document.getElementById("loading").innerHTML =
 "<b style='font-size:18px;'>🤖 Nexora AI:</b><br>" +
-data.reply
-.replace(/\n/g, "<br>");
+data.reply.replace(/\n/g, "<br>");
+
 chat.scrollTop = chat.scrollHeight;
+
 } catch(error){
 
 document.getElementById("loading").innerHTML =
