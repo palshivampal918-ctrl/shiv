@@ -155,8 +155,22 @@ h1 { font-size: 36px; }
 .hero, .card { padding: 25px 20px; }
 .tab-btn { font-size: 12px; padding: 8px 14px; }
 }
+.portfolio-gallery{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+gap:15px;
+margin-top:20px;
+}
 
-</style>  </head>
+.portfolio-gallery img{
+width:100%;
+height:180px;
+object-fit:cover;
+border-radius:12px;
+box-shadow:0 8px 20px rgba(0,0,0,0.4);
+}
+</style>  
+</head>
 
 <body>  <div class="hero">      
     <div class="premium-text-logo">NX</div>      
@@ -212,7 +226,9 @@ Start Your AI Journey
     <button class="tab-btn" onclick="openCategory(event, 'realty')">🏠 Real Estate</button>      
 </div>      <div id="gym" class="portfolio-content active">      
     <p>AI designed fitness advertisements to drive high gym membership conversions. 💪</p>      
-    <div class="ad-media-box"><img id="gym-img" src="https://images.unsplash.com/photo-1517838277536-f5f99be501cd?w=800" alt="Gym Ad"></div>      
+    <div class="portfolio-gallery" id="gym-gallery">
+<img src="https://images.unsplash.com/photo-1517838277536-f5f99be501cd?w=800">
+</div>      
 </div>      <div id="coaching" class="portfolio-content">      
     <p>Smart marketing ideas and creative lead-generation for modern education brands. 📚</p>      
     <div class="ad-media-box"><img id="coaching-img" src="https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=800" alt="Coaching Ad"></div>      
