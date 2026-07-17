@@ -417,13 +417,15 @@ loadAds();
 <h2 style="margin:0 0 8px 0;">🤖 Nexora AI Assistant</h2>
 
 <div id="chat-box" style="
-height:80px;
+min-height:120px;
+max-height:350px;
 overflow-y:auto;
 background:#111827;
-padding:10px;
+padding:15px;
 border-radius:12px;
 text-align:left;
-margin-bottom:8px;">
+margin-bottom:8px;
+scroll-behavior:smooth;">
 </div>
 
 <input id="user-input" placeholder="Apna sawal likho..." 
@@ -483,7 +485,7 @@ const data = await response.json();
 
 document.getElementById("loading").innerHTML =
 "<b>Nexora AI:</b> " + data.reply;
-
+chat.scrollTop = chat.scrollHeight;
 } catch(error){
 
 document.getElementById("loading").innerHTML =
